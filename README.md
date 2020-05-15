@@ -12,5 +12,5 @@ List all epics in all projects
      from pyvotal5.pyvotal import set_token, Project
      set_token('yOuRsEcReTtOk3n')
      for p in Project.fetch_all():
-          for e in p.epics():
+          for e in p.epics:
               print(e.name)
