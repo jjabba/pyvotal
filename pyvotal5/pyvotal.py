@@ -68,10 +68,12 @@ class Base():
 class Project(Base):
     _epics = None
 
-    def epics(self):
-        if self._epics is None:
-            self._epics = Epic.fetch_all(self.id)
-        return self._epics
+    def __getattr__(self, attr):
+        if attr in ['epics']:
+            if self._epics is None:
+                self._epics = Epic.fetch_all(self.id)
+            return self._epics
+        return super().__getattr__(attr)
 
     @staticmethod
     def fetch_all():
